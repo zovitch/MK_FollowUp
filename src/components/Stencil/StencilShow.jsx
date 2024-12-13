@@ -1,11 +1,10 @@
 import {
   ChipField,
-  Datagrid,
   NumberField,
-  ReferenceManyField,
-  ReferenceOneField,
+  ReferenceArrayField,
   Show,
   SimpleShowLayout,
+  SingleFieldList,
 } from 'react-admin'
 
 export const StencilShow = () => {
@@ -21,21 +20,16 @@ export const StencilShow = () => {
             color: 'primary.main',
           }}
         />
-        <ReferenceManyField
-          reference='stencils2library_items'
-          target='stencil_id'
+        <ReferenceArrayField
+          reference='library_items'
+          source='library_item_ids'
           label='Library Items'
+          sort={{ field: 'lItem', order: 'ASC' }}
         >
-          <Datagrid bulkActionButtons={false}>
-            <ReferenceOneField
-              reference='library_items'
-              target='id'
-              source='lItem_id'
-            >
-              <ChipField source='lItem' />
-            </ReferenceOneField>
-          </Datagrid>
-        </ReferenceManyField>
+          <SingleFieldList linkType='show'>
+            <ChipField source='lItem' />
+          </SingleFieldList>
+        </ReferenceArrayField>
       </SimpleShowLayout>
     </Show>
   )

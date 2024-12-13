@@ -3,7 +3,6 @@ import { Create, SimpleForm, TextInput, useGetList } from 'react-admin'
 export const Library_itemCreate = () => {
   const { data, isPending, error } = useGetList('library_items', {
     sort: { field: 'lItem', order: 'DESC' },
-    pagination: { page: 1, perPage: 1000 },
   })
 
   if (isPending) return <p>Loading...</p>
@@ -13,11 +12,9 @@ export const Library_itemCreate = () => {
   let lastItem = 0
   data.forEach((item) => {
     const itemNumber = parseInt(item.lItem.slice(1), 10) // Ensure base 10 parsing
-    console.log('itemNumber:', itemNumber)
     if (itemNumber > lastItem) lastItem = itemNumber
   })
 
-  console.log('lastItem:', lastItem)
   // increment the last item number to get the new item number
   lastItem += 1
   const newItem = 'L' + lastItem.toString().padStart(4, '0')
@@ -25,7 +22,7 @@ export const Library_itemCreate = () => {
   return (
     <Create redirect='show'>
       <SimpleForm>
-        <TextInput source='lItem' defaultValue={newItem} />
+        <TextInput source='lItem' defaultValue={newItem} required />
         <TextInput source='description' />
       </SimpleForm>
     </Create>

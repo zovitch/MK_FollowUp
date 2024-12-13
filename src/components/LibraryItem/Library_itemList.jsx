@@ -2,6 +2,7 @@ import {
   Datagrid,
   Edit,
   InfiniteList,
+  ShowButton,
   SimpleForm,
   TextField,
   TextInput,
@@ -16,7 +17,6 @@ const ItemEdit = () => {
   return (
     <Edit resource={resource} actions={null} id={record.id}>
       <SimpleForm>
-        <TextField source='lItem' />
         <TextInput source='description' />
       </SimpleForm>
     </Edit>
@@ -25,9 +25,15 @@ const ItemEdit = () => {
 
 export const Library_itemList = () => (
   <InfiniteList sort={{ field: 'lItem', order: 'ASC' }}>
-    <Datagrid bulkActionButtons={false} expand={<ItemEdit />} expandSingle>
+    <Datagrid
+      bulkActionButtons={false}
+      expand={<ItemEdit />}
+      expandSingle
+      rowClick='expand'
+    >
       <TextField source='lItem' />
       <TextField source='description' />
+      <ShowButton />
     </Datagrid>
   </InfiniteList>
 )

@@ -1,11 +1,15 @@
-import { Admin, EditGuesser, Resource } from 'react-admin'
+import { Admin, Resource } from 'react-admin'
 import { dataProvider } from './dataProvider'
 
 import { MkFileList } from './components/MkFile/MkFileList'
+import { MkFileEdit } from './components/MkFile/MkFileEdit'
 import { MkFileShow } from './components/MkFile/MkFileShow'
+import { MkFileCreate } from './components/MkFile/MkFileCreate'
 
 import { StencilList } from './components/Stencil/StencilList'
+import { StencilEdit } from './components/Stencil/StencilEdit'
 import { StencilShow } from './components/Stencil/StencilShow'
+import { StencilCreate } from './components/Stencil/StencilCreate'
 
 import { Library_itemList } from './components/LibraryItem/Library_itemList'
 import { Library_itemEdit } from './components/LibraryItem/Library_itemEdit'
@@ -21,8 +25,9 @@ const App = () => (
     <Resource
       name='mk_files'
       list={MkFileList}
-      edit={EditGuesser}
+      edit={MkFileEdit}
       show={MkFileShow}
+      create={MkFileCreate}
       recordRepresentation='mkFilename'
       icon={FolderOpenIcon}
     />
@@ -30,8 +35,9 @@ const App = () => (
     <Resource
       name='stencils'
       list={StencilList}
-      edit={EditGuesser}
+      edit={StencilEdit}
       show={StencilShow}
+      create={StencilCreate}
       recordRepresentation='stencilNumber'
       icon={FullscreenIcon}
     />
@@ -45,8 +51,6 @@ const App = () => (
       recordRepresentation='lItem'
       icon={TurnedInIcon}
     />
-    <Resource name='mk_files2stencils' />
-    <Resource name='stencils2library_items' />
   </Admin>
 )
 

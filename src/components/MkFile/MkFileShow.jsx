@@ -1,7 +1,7 @@
 import {
+  ArrayField,
   Datagrid,
-  ReferenceManyField,
-  ReferenceOneField,
+  ReferenceField,
   Show,
   SimpleShowLayout,
   TextField,
@@ -18,22 +18,14 @@ export const MkFileShow = () => (
           color: 'primary.main',
         }}
       />
-      <ReferenceManyField
-        reference='mk_files2stencils'
-        target='mk_file_id'
-        label='Stencils Numbers'
-      >
+      <ArrayField source='stencil_ids' label='Stencils'>
         <Datagrid bulkActionButtons={false}>
-          <ReferenceOneField
-            reference='stencils'
-            target='id'
-            source='stencil_id'
-          >
+          <ReferenceField source='id' reference='stencils'>
             <TextField source='stencilNumber' />
-          </ReferenceOneField>
-          <TextField source='stencilVersion' />
+          </ReferenceField>
+          <TextField source='version' label='Version' />
         </Datagrid>
-      </ReferenceManyField>
+      </ArrayField>
     </SimpleShowLayout>
   </Show>
 )

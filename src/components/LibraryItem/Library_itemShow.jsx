@@ -1,4 +1,9 @@
-import { Show, SimpleShowLayout, TextField } from 'react-admin'
+import {
+  ReferenceArrayField,
+  Show,
+  SimpleShowLayout,
+  TextField,
+} from 'react-admin'
 
 export const Library_itemShow = () => (
   <Show>
