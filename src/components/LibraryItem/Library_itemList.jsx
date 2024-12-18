@@ -10,6 +10,8 @@ import {
   useResourceContext,
 } from 'react-admin'
 
+import { FilterQ } from '../FilterQ'
+
 // eslint-disable-next-line react-refresh/only-export-components
 const ItemEdit = () => {
   const record = useRecordContext()
@@ -24,7 +26,7 @@ const ItemEdit = () => {
 }
 
 export const Library_itemList = () => (
-  <InfiniteList sort={{ field: 'lItem', order: 'ASC' }}>
+  <InfiniteList sort={{ field: 'lItem', order: 'ASC' }} filters={<FilterQ />}>
     <Datagrid
       bulkActionButtons={false}
       expand={<ItemEdit />}

@@ -6,9 +6,10 @@ import {
   EditButton,
 } from 'react-admin'
 import MkFileStencilShow from './MkFileStencilShow'
+import { FilterQ } from '../FilterQ'
 
 export const MkFileList = () => (
-  <InfiniteList>
+  <InfiniteList filters={<FilterQ />}>
     <Datagrid bulkActionButtons={false}>
       <TextField source='mkFilename' />
       <MkFileStencilShow />

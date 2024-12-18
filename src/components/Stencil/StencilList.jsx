@@ -5,10 +5,15 @@ import {
   Datagrid,
   EditButton,
 } from 'react-admin'
+
 import StencilLibraryItemsShow from './StencilLibraryItemsShow'
+import { FilterQ } from '../FilterQ'
 
 export const StencilList = () => (
-  <InfiniteList sort={{ field: 'stencilNumber', order: 'ASC' }}>
+  <InfiniteList
+    sort={{ field: 'stencilNumber', order: 'ASC' }}
+    filters={<FilterQ />}
+  >
     <Datagrid bulkActionButtons={false}>
       <NumberField
         source='stencilNumber'
