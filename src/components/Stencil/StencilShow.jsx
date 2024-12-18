@@ -1,11 +1,5 @@
-import {
-  ChipField,
-  NumberField,
-  ReferenceArrayField,
-  Show,
-  SimpleShowLayout,
-  SingleFieldList,
-} from 'react-admin'
+import { NumberField, Show, SimpleShowLayout } from 'react-admin'
+import StencilLibraryItemsShow from './StencilLibraryItemsShow'
 
 export const StencilShow = () => {
   return (
@@ -20,16 +14,7 @@ export const StencilShow = () => {
             color: 'primary.main',
           }}
         />
-        <ReferenceArrayField
-          reference='library_items'
-          source='library_item_ids'
-          label='Library Items'
-          sort={{ field: 'lItem', order: 'ASC' }}
-        >
-          <SingleFieldList linkType='show'>
-            <ChipField source='lItem' />
-          </SingleFieldList>
-        </ReferenceArrayField>
+        <StencilLibraryItemsShow />
       </SimpleShowLayout>
     </Show>
   )

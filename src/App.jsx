@@ -23,6 +23,7 @@ import FolderOpenIcon from '@mui/icons-material/FolderOpen'
 const App = () => (
   <Admin dataProvider={dataProvider}>
     <Resource name='mk_files2stencils' />
+    <Resource name='stencils2library_items' />
 
     <Resource
       name='mk_files'
