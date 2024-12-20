@@ -8,6 +8,8 @@ import {
   ChipField,
 } from 'react-admin'
 
+const handleRowClick = (id) => `/stencils/${id}/show`
+
 export const MkFileShow = () => (
   <Show>
     <SimpleShowLayout>
@@ -23,7 +25,10 @@ export const MkFileShow = () => (
         source='stencil_ids'
         sort={{ field: 'stencilNumber', order: 'ASC' }}
       >
-        <Datagrid bulkActionButtons={false}>
+        <Datagrid
+          bulkActionButtons={false}
+          rowClick={(id) => handleRowClick(id)}
+        >
           <ReferenceField
             reference='stencils'
             source='id'
