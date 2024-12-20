@@ -1,6 +1,12 @@
-import { Show, SimpleShowLayout, TextField } from 'react-admin'
-
-import MkFileStencilShow from './MkFileStencilShow'
+import {
+  Datagrid,
+  Show,
+  SimpleShowLayout,
+  TextField,
+  ArrayField,
+  ReferenceField,
+  ChipField,
+} from 'react-admin'
 
 export const MkFileShow = () => (
   <Show>
@@ -13,7 +19,21 @@ export const MkFileShow = () => (
           color: 'primary.main',
         }}
       />
-      <MkFileStencilShow />
+      <ArrayField
+        source='stencil_ids'
+        sort={{ field: 'stencilNumber', order: 'ASC' }}
+      >
+        <Datagrid bulkActionButtons={false}>
+          <ReferenceField
+            reference='stencils'
+            source='id'
+            label='Stencil Number'
+          >
+            <ChipField source='stencilNumber' />
+          </ReferenceField>
+          <TextField source='version' />
+        </Datagrid>
+      </ArrayField>
     </SimpleShowLayout>
   </Show>
 )

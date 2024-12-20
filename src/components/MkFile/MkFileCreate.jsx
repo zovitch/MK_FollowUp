@@ -7,6 +7,7 @@ import {
   SimpleFormIterator,
   ReferenceInput,
   AutocompleteInput,
+  required,
 } from 'react-admin'
 
 export const MkFileCreate = () => {
@@ -42,14 +43,20 @@ export const MkFileCreate = () => {
         />
         <ArrayInput source='stencil_ids' label='Stencils'>
           <SimpleFormIterator inline fullWidth={false}>
-            <ReferenceInput reference='stencils' source='id' label='Stencil'>
+            <ReferenceInput
+              reference='stencils'
+              source='id'
+              label='Stencil'
+              sort={{ field: 'stencilNumber', order: 'ASC' }}
+            >
               <AutocompleteInput
                 label='Stencil'
                 optionText='stencilNumber'
                 optionValue='id'
+                validate={required()}
               />
             </ReferenceInput>
-            <TextInput source='version' label='Version' />
+            <TextInput source='version' label='Version' required />
           </SimpleFormIterator>
         </ArrayInput>
       </SimpleForm>

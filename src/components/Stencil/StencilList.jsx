@@ -4,9 +4,9 @@ import {
   ShowButton,
   Datagrid,
   EditButton,
+  ReferenceArrayField,
 } from 'react-admin'
 
-import StencilLibraryItemsShow from './StencilLibraryItemsShow'
 import { FilterQ } from '../FilterQ'
 
 export const StencilList = () => (
@@ -19,7 +19,8 @@ export const StencilList = () => (
         source='stencilNumber'
         options={{ minimumIntegerDigits: 4, useGrouping: false }}
       />
-      <StencilLibraryItemsShow />
+      <ReferenceArrayField reference='library_items' source='lItem_ids' />
+
       <ShowButton />
       <EditButton />
     </Datagrid>

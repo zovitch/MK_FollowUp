@@ -1,22 +1,28 @@
 import {
+  AutocompleteArrayInput,
   Edit,
-  NumberInput,
   ReferenceArrayInput,
   SimpleForm,
-  AutocompleteArrayInput,
+  TextInput,
 } from 'react-admin'
 
-export const StencilEdit = () => (
-  <Edit>
-    <SimpleForm>
-      <NumberInput source='stencilNumber' required />
-      <ReferenceArrayInput
-        reference='library_items'
-        source='library_item_ids'
-        sort={{ field: 'lItem', order: 'ASC' }}
-      >
-        <AutocompleteArrayInput optionText='lItem' />
-      </ReferenceArrayInput>
-    </SimpleForm>
-  </Edit>
-)
+export const StencilEdit = () => {
+  return (
+    <Edit>
+      <SimpleForm>
+        <TextInput source='stencilNumber' />
+        <ReferenceArrayInput
+          source='lItem_ids'
+          reference='library_items'
+          sort={{ field: 'lItem', order: 'ASC' }}
+        >
+          <AutocompleteArrayInput
+            optionText='lItem'
+            // blurOnSelect={false}
+            // disableCloseOnSelect
+          />
+        </ReferenceArrayInput>
+      </SimpleForm>
+    </Edit>
+  )
+}

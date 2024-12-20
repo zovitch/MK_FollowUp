@@ -1,5 +1,9 @@
-import { NumberField, Show, SimpleShowLayout } from 'react-admin'
-import StencilLibraryItemsShow from './StencilLibraryItemsShow'
+import {
+  NumberField,
+  ReferenceArrayField,
+  Show,
+  SimpleShowLayout,
+} from 'react-admin'
 
 export const StencilShow = () => {
   return (
@@ -14,7 +18,7 @@ export const StencilShow = () => {
             color: 'primary.main',
           }}
         />
-        <StencilLibraryItemsShow />
+        <ReferenceArrayField source='lItem_ids' reference='library_items' />
       </SimpleShowLayout>
     </Show>
   )
