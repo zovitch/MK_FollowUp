@@ -1,41 +1,32 @@
 import {
+  ChipField,
   Datagrid,
-  Edit,
+  EditButton,
   InfiniteList,
   ShowButton,
-  SimpleForm,
   TextField,
-  TextInput,
-  useRecordContext,
-  useResourceContext,
 } from 'react-admin'
 
 import { FilterQ } from '../FilterQ'
 
-// eslint-disable-next-line react-refresh/only-export-components
-const ItemEdit = () => {
-  const record = useRecordContext()
-  const resource = useResourceContext()
-  return (
-    <Edit resource={resource} actions={null} id={record.id}>
-      <SimpleForm>
-        <TextInput source='description' />
-      </SimpleForm>
-    </Edit>
-  )
-}
-
 export const Library_itemList = () => (
   <InfiniteList sort={{ field: 'lItem', order: 'ASC' }} filters={<FilterQ />}>
-    <Datagrid
-      bulkActionButtons={false}
-      expand={<ItemEdit />}
-      expandSingle
-      rowClick='expand'
-    >
-      <TextField source='lItem' />
+    <Datagrid bulkActionButtons={false} rowClick='show'>
+      <ChipField
+        source='lItem'
+        label='Library Item'
+        variant='outlined'
+        sx={{
+          color: 'secondary.main',
+          borderColor: 'secondary.main',
+          '& .MuiChip-label': {
+            color: 'secondary.main',
+          },
+        }}
+      />
       <TextField source='description' />
       <ShowButton />
+      <EditButton />
     </Datagrid>
   </InfiniteList>
 )
