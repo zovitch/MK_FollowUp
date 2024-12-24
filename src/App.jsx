@@ -21,10 +21,11 @@ import FullscreenIcon from '@mui/icons-material/Fullscreen'
 import FolderOpenIcon from '@mui/icons-material/FolderOpen'
 
 const App = () => (
-  <Admin dataProvider={dataProvider}>
-    <Resource name='mk_files2stencils' />
-    <Resource name='stencils2library_items' />
-
+  <Admin
+    dataProvider={dataProvider}
+    // theme={houseLightTheme}
+    // darkTheme={houseDarkTheme}
+  >
     <Resource
       name='mk_files'
       list={MkFileList}

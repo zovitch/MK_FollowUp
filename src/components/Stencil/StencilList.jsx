@@ -1,10 +1,11 @@
 import {
   InfiniteList,
-  NumberField,
   ShowButton,
   Datagrid,
   EditButton,
   ReferenceArrayField,
+  ChipField,
+  SingleFieldList,
 } from 'react-admin'
 
 import { FilterQ } from '../FilterQ'
@@ -15,12 +16,36 @@ export const StencilList = () => (
     filters={<FilterQ />}
   >
     <Datagrid bulkActionButtons={false}>
-      <NumberField
+      <ChipField
         source='stencilNumber'
         options={{ minimumIntegerDigits: 4, useGrouping: false }}
+        sx={{
+          color: 'white', // Set the text color to white
+          backgroundColor: 'primary.main', // Set the background color
+          '& .MuiChip-label': {
+            color: 'white', // Ensure the label text color is white
+          },
+        }}
       />
-      <ReferenceArrayField reference='library_items' source='lItem_ids' />
-
+      <ReferenceArrayField
+        reference='library_items'
+        source='lItem_ids'
+        label='Library Items'
+      >
+        <SingleFieldList linkType='show'>
+          <ChipField
+            source='lItem'
+            variant='outlined'
+            sx={{
+              color: 'secondary.main',
+              borderColor: 'secondary.main',
+              '& .MuiChip-label': {
+                color: 'secondary.main',
+              },
+            }}
+          />
+        </SingleFieldList>
+      </ReferenceArrayField>
       <ShowButton />
       <EditButton />
     </Datagrid>
