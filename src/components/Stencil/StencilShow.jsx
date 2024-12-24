@@ -35,7 +35,7 @@ export const StencilShow = () => (
             reference='library_items'
             label='Library Items'
           >
-            <SingleFieldList>
+            <SingleFieldList linkType='show'>
               <ChipField
                 source='lItem'
                 variant='outlined'

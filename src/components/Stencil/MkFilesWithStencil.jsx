@@ -11,7 +11,14 @@ const MkFilesWithStencil = () => {
   const record = useRecordContext()
   const [mkFiles, setMkFiles] = useState([])
 
-  const { data: mkFilesData, isLoading, error } = useGetList('mk_files')
+  const {
+    data: mkFilesData,
+    isLoading,
+    error,
+  } = useGetList('mk_files', {
+    pagination: { page: 1, perPage: 10000 },
+    sort: { field: 'mkFilename', order: 'ASC' },
+  })
 
   useEffect(() => {
     if (!isLoading && !error && mkFilesData) {
@@ -34,8 +41,6 @@ const MkFilesWithStencil = () => {
 
   if (isLoading) return <span>Loading...</span>
   if (error) return <span>Error: {error.message}</span>
-
-  console.log('mkFiles', mkFiles)
 
   return (
     <ListContextProvider
