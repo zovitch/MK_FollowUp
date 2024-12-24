@@ -2,8 +2,7 @@
   "mk_files": [
     {
       "id": "4D0X1K4Z",
-      "mkFilename": "MK_0001_DS40",
-      "stencil_ids": []
+      "mkFilename": "MK_0001_DS40"
     },
     {
       "id": "2P8Z1L9A",
@@ -741,8 +740,7 @@
   "stencils": [
     {
       "id": "9R9Y9T9Z",
-      "stencilNumber": "0001",
-      "lItem_ids": []
+      "stencilNumber": "0001"
     },
     {
       "id": "0S6M2G9J",
