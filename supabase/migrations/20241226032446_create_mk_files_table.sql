@@ -1,7 +1,7 @@
 -- Create mk_files table
 CREATE TABLE mk_files (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-    mkFilename TEXT NOT NULL UNIQUE,
+    "mkFilename" TEXT NOT NULL UNIQUE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );

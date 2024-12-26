@@ -1,7 +1,7 @@
 -- Create stencils table
 CREATE TABLE stencils (
     id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-    stencilNumber TEXT NOT NULL CHECK (stencilNumber ~ '^\d{4}$') UNIQUE,
+    "stencilNumber" TEXT NOT NULL CHECK ("stencilNumber" ~ '^\d{4}$') UNIQUE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );

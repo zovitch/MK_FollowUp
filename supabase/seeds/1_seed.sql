@@ -1,5 +1,5 @@
 -- Seed data for mk_files table
-INSERT INTO mk_files (id, mkFilename) VALUES
+INSERT INTO mk_files (id, "mkFilename") VALUES
 ('cc72e1b5-a941-46d9-873c-64c286268ad1', 'MK_0001_DS40'),
 ('f558aac4-b032-4d15-b6fa-b87f7a8242c2', 'MK_0002_DS70R'),
 ('8d9b065e-43a3-425b-9c83-e292b52cfc71', 'MK_0003_DS10'),
@@ -185,7 +185,7 @@ INSERT INTO mk_files (id, mkFilename) VALUES
 ('3fbba335-ea53-417a-ac82-164d3e37bbb9', 'MK_DS150_250_DE');
 
 -- Seed data for stencils table
-INSERT INTO stencils (id, stencilNumber) VALUES
+INSERT INTO stencils ("id", "stencilNumber") VALUES
 ('089ca149-f864-4e0c-8adc-276a1fd64072', '0001'),
 ('9e9cb14e-db5f-49f7-b616-725fcc4bb560', '0002'),
 ('eaa810c4-0aec-43c8-b55f-01fab536ea89', '0003'),
@@ -3155,7 +3155,7 @@ INSERT INTO stencils (id, stencilNumber) VALUES
 ('0c87bcbd-6f3c-46fc-bb7f-a94ed143da0e', '2967');
 
 -- Seed data for library items table
-INSERT INTO library_items (id, lItem) VALUES
+INSERT INTO library_items ("id", "lItem") VALUES
 ('227d4346-645e-47f1-8dcc-29829527ea20', 'L0000'),
 ('6c7bac5e-866e-40bf-a5cd-dd4b477abad1', 'L0001'),
 ('4f035bad-7204-4142-8fd3-99af25e93451', 'L0002'),

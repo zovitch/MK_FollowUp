@@ -1,5 +1,6 @@
 import { Admin, Resource } from 'react-admin'
-import { dataProvider } from './dataProvider'
+import { createClient } from '@supabase/supabase-js'
+import { supabaseDataProvider } from 'ra-supabase'
 
 import { MkFileList } from './components/MkFile/MkFileList'
 import { MkFileEdit } from './components/MkFile/MkFileEdit'
@@ -19,6 +20,17 @@ import { Library_itemCreate } from './components/LibraryItem/Library_itemCreate'
 import TurnedInIcon from '@mui/icons-material/TurnedIn'
 import FullscreenIcon from '@mui/icons-material/Fullscreen'
 import FolderOpenIcon from '@mui/icons-material/FolderOpen'
+
+// supabase parameters
+const instanceUrl = import.meta.env.VITE_SUPABASE_URL
+const apiKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+const supabaseClient = createClient(instanceUrl, apiKey)
+const dataProvider = supabaseDataProvider({
+  instanceUrl,
+  apiKey,
+  supabaseClient,
+})
+// const authProvider = supabaseAuthProvider(supabaseClient, {})
 
 const App = () => (
   <Admin
