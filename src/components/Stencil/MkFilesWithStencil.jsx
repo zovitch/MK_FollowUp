@@ -35,8 +35,6 @@ const MkFilesWithStencil = () => {
   if (isLoading) return <span>Loading...</span>
   if (error) return <span>Error: {error.message}</span>
 
-  console.log('mkFiles', mkFiles)
-
   return (
     <ListContextProvider
       value={{

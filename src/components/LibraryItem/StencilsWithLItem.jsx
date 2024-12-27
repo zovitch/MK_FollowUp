@@ -25,8 +25,6 @@ const StencilsWithLItem = () => {
   if (isLoading) return <span>Loading...</span>
   if (error) return <span>Error: {error.message}</span>
 
-  console.log('stencils', stencils)
-
   return (
     <ListContextProvider
       value={{
