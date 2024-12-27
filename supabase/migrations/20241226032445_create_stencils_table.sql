@@ -8,9 +8,10 @@ CREATE TABLE stencils (
 
 -- Create stencil_library_items join table
 CREATE TABLE stencil_library_items (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     stencil_id UUID NOT NULL REFERENCES stencils(id),
     library_item_id UUID NOT NULL REFERENCES library_items(id),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (stencil_id, library_item_id) -- This ensures the combination is unique
+    UNIQUE (stencil_id, library_item_id) -- This ensures the combination is unique
 );
