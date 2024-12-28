@@ -3,12 +3,12 @@ import {
   ShowButton,
   Datagrid,
   EditButton,
-  ReferenceArrayField,
   ChipField,
-  SingleFieldList,
+  Labeled,
 } from 'react-admin'
 
 import { FilterQ } from '../FilterQ'
+import { LibraryItemsRelatedToStencils } from './LibraryItemsRelatedToStencils'
 
 export const StencilList = () => (
   <InfiniteList
@@ -27,25 +27,9 @@ export const StencilList = () => (
           },
         }}
       />
-      <ReferenceArrayField
-        reference='library_items'
-        source='lItem_ids'
-        label='Library Items'
-      >
-        <SingleFieldList linkType='show'>
-          <ChipField
-            source='lItem'
-            variant='outlined'
-            sx={{
-              color: 'secondary.main',
-              borderColor: 'secondary.main',
-              '& .MuiChip-label': {
-                color: 'secondary.main',
-              },
-            }}
-          />
-        </SingleFieldList>
-      </ReferenceArrayField>
+      <Labeled label='Library Item'>
+        <LibraryItemsRelatedToStencils />
+      </Labeled>
       <ShowButton />
       <EditButton />
     </Datagrid>

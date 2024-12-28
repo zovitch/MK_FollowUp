@@ -1,14 +1,9 @@
-import {
-  ChipField,
-  ReferenceArrayField,
-  Show,
-  SimpleShowLayout,
-  SingleFieldList,
-} from 'react-admin'
+import { ChipField, Labeled, Show, SimpleShowLayout } from 'react-admin'
 
-import { Grid, Divider } from '@mui/material'
+import { Divider } from '@mui/material'
 
-import MkFilesWithStencil from './MkFilesWithStencil'
+import { LibraryItemsRelatedToStencils } from './LibraryItemsRelatedToStencils'
+import { MkFilesRelatedToStencils } from '../MkFile/MkFilesRelatedToStencils'
 
 export const StencilShow = () => (
   <Show>
@@ -26,36 +21,13 @@ export const StencilShow = () => (
         }}
       />
       <Divider />
+      <Labeled label='Library Items'>
+        <LibraryItemsRelatedToStencils />
+      </Labeled>
+      <Divider />
+      <Labeled label='MK Files Using This Stencil'>
+        <MkFilesRelatedToStencils />
+      </Labeled>
     </SimpleShowLayout>
-    <Grid container spacing={2}>
-      <Grid item xs={6}>
-        <SimpleShowLayout direction={'row'}>
-          <ReferenceArrayField
-            source='lItem_ids'
-            reference='library_items'
-            label='Library Items'
-          >
-            <SingleFieldList>
-              <ChipField
-                source='lItem'
-                variant='outlined'
-                sx={{
-                  color: 'secondary.main',
-                  borderColor: 'secondary.main',
-                  '& .MuiChip-label': {
-                    color: 'secondary.main',
-                  },
-                }}
-              />
-            </SingleFieldList>
-          </ReferenceArrayField>
-        </SimpleShowLayout>
-      </Grid>
-      <Grid item xs={6}>
-        <SimpleShowLayout>
-          <MkFilesWithStencil />
-        </SimpleShowLayout>
-      </Grid>
-    </Grid>
   </Show>
 )

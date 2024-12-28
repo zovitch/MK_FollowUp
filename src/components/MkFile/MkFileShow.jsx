@@ -1,54 +1,29 @@
-import {
-  Datagrid,
-  Show,
-  SimpleShowLayout,
-  TextField,
-  ArrayField,
-  ReferenceField,
-  ChipField,
-} from 'react-admin'
+import { ChipField, Labeled, Show, SimpleShowLayout } from 'react-admin'
 
-const handleRowClick = (id) => `/stencils/${id}/show`
+import { Divider } from '@mui/material'
+
+import { StencilsRelatedToMkFiles } from './StencilsRelatedToMkFiles'
 
 export const MkFileShow = () => (
   <Show>
     <SimpleShowLayout>
-      <TextField
+      <ChipField
         source='mkFilename'
+        color='primary'
         sx={{
-          fontSize: 24,
+          borderColor: 'primary.main',
+          borderRadius: '5px',
+          backgroundColor: 'teal',
+          floodOpacity: 0.5,
+          opacity: 0.5,
           fontWeight: 'bold',
-          color: 'primary.main',
+          fontSize: '1.1rem',
         }}
       />
-      <ArrayField
-        source='stencil_ids'
-        sort={{ field: 'stencilNumber', order: 'ASC' }}
-        label='Stencils'
-      >
-        <Datagrid
-          bulkActionButtons={false}
-          rowClick={(id) => handleRowClick(id)}
-        >
-          <ReferenceField
-            reference='stencils'
-            source='id'
-            label='Stencil Number'
-          >
-            <ChipField
-              source='stencilNumber'
-              sx={{
-                color: 'white', // Set the text color to white
-                backgroundColor: 'primary.main', // Set the background color
-                '& .MuiChip-label': {
-                  color: 'white', // Ensure the label text color is white
-                },
-              }}
-            />
-          </ReferenceField>
-          <TextField source='version' />
-        </Datagrid>
-      </ArrayField>
+      <Divider />
+      <Labeled label='Stencils'>
+        <StencilsRelatedToMkFiles />
+      </Labeled>
     </SimpleShowLayout>
   </Show>
 )

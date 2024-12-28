@@ -1,6 +1,12 @@
-import { ChipField, Show, SimpleShowLayout, TextField } from 'react-admin'
-import { Grid, Divider } from '@mui/material'
-import StencilsWithLItem from './StencilsWithLItem'
+import {
+  ChipField,
+  Labeled,
+  Show,
+  SimpleShowLayout,
+  TextField,
+} from 'react-admin'
+import { Divider } from '@mui/material'
+import { StencilsRelatedToLibraryItem } from './StencilsRelatedToLibraryItem'
 
 export const Library_itemShow = () => (
   <Show>
@@ -17,19 +23,11 @@ export const Library_itemShow = () => (
           },
         }}
       />
+      <TextField source='description' />
       <Divider />
+      <Labeled label='Stencils'>
+        <StencilsRelatedToLibraryItem />
+      </Labeled>
     </SimpleShowLayout>
-    <Grid container spacing={2}>
-      <Grid item xs={6}>
-        <SimpleShowLayout direction={'row'}>
-          <TextField source='description' />
-        </SimpleShowLayout>
-      </Grid>
-      <Grid item xs={6}>
-        <SimpleShowLayout>
-          <StencilsWithLItem />
-        </SimpleShowLayout>
-      </Grid>
-    </Grid>
   </Show>
 )
