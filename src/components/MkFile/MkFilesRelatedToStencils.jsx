@@ -6,6 +6,7 @@ import {
 } from 'react-admin'
 
 import { Box, Chip, Badge } from '@mui/material'
+import { getVersionColor } from '../utils/versionColors'
 
 export const MkFilesRelatedToStencils = () => {
   const record = useRecordContext() // Get the current record
@@ -44,25 +45,33 @@ export const MkFilesRelatedToStencils = () => {
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
       {sortedMkFileData.map((mkFile) => (
-        <>
-          <Badge badgeContent={mkFile.version} color='primary'>
-            <Chip
-              key={mkFile.mkFilename}
-              label={`${mkFile.mkFilename}`}
-              color='primary'
-              onClick={(event) => handleClick(event, mkFile)}
-              sx={{
-                borderColor: 'primary.main',
-                borderRadius: '5px',
-                backgroundColor: 'teal',
-                floodOpacity: 0.5,
-                opacity: 0.5,
-                fontWeight: 'bold',
-                fontSize: '1.1rem',
-              }}
-            />
-          </Badge>
-        </>
+        <Badge
+          badgeContent={mkFile.version}
+          key={`${mkFile.mkFilename}-${mkFile.stencilNumber}`}
+          sx={{
+            '& .MuiBadge-badge': {
+              backgroundColor: getVersionColor(mkFile.version),
+              color: 'white',
+              fontWeight: 'bold',
+              fontSize: '0.8rem',
+            },
+          }}
+        >
+          <Chip
+            key={`${mkFile.mkFilename}-${mkFile.version}`}
+            label={`${mkFile.mkFilename}`}
+            color='primary'
+            onClick={(event) => handleClick(event, mkFile)}
+            sx={{
+              borderColor: 'primary.main',
+              borderRadius: '5px',
+              floodopacity: 0.8,
+              opacity: 0.8,
+              fontWeight: 'bold',
+              fontSize: '1.1rem',
+            }}
+          />
+        </Badge>
       ))}
     </Box>
   )

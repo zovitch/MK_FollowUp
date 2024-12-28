@@ -1,6 +1,7 @@
 import { useGetList, useGetRecordId, useRedirect } from 'react-admin'
-
 import { Box, Chip, Badge } from '@mui/material'
+
+import { getVersionColor } from '../utils/versionColors'
 
 export const StencilsRelatedToMkFiles = () => {
   const recordId = useGetRecordId()
@@ -37,16 +38,25 @@ export const StencilsRelatedToMkFiles = () => {
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
       {sortedStencilData.map((stencil) => (
-        <>
-          <Badge badgeContent={stencil.version} color='primary'>
-            <Chip
-              key={stencil.stencilNumber}
-              label={`${stencil.stencilNumber}`}
-              color='primary'
-              onClick={(event) => handleClick(event, stencil)}
-            />
-          </Badge>
-        </>
+        <Badge
+          badgeContent={stencil.version}
+          key={stencil.stencilNumber}
+          sx={{
+            '& .MuiBadge-badge': {
+              backgroundColor: getVersionColor(stencil.version),
+              color: 'white',
+              fontWeight: 'bold',
+              fontSize: '0.8rem',
+            },
+          }}
+        >
+          <Chip
+            key={stencil.stencilNumber}
+            label={`${stencil.stencilNumber}`}
+            color='primary'
+            onClick={(event) => handleClick(event, stencil)}
+          />
+        </Badge>
       ))}
     </Box>
   )

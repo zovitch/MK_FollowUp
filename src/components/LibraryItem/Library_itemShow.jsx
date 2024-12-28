@@ -25,7 +25,8 @@ export const Library_itemShow = () => (
       />
       <TextField source='description' />
       <Divider />
-      <Labeled label='Stencils'>
+
+      <Labeled label='Stencils using this Library Item'>
         <StencilsRelatedToLibraryItem />
       </Labeled>
     </SimpleShowLayout>

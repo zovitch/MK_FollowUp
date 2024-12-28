@@ -13,9 +13,8 @@ export const MkFileShow = () => (
         sx={{
           borderColor: 'primary.main',
           borderRadius: '5px',
-          backgroundColor: 'teal',
-          floodOpacity: 0.5,
-          opacity: 0.5,
+          floodopacity: 0.8,
+          opacity: 0.8,
           fontWeight: 'bold',
           fontSize: '1.1rem',
         }}

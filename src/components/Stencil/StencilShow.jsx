@@ -25,7 +25,7 @@ export const StencilShow = () => (
         <LibraryItemsRelatedToStencils />
       </Labeled>
       <Divider />
-      <Labeled label='MK Files Using This Stencil'>
+      <Labeled label='MK Files using this Stencil'>
         <MkFilesRelatedToStencils />
       </Labeled>
     </SimpleShowLayout>

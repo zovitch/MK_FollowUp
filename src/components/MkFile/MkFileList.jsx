@@ -5,13 +5,15 @@ import {
   EditButton,
   Labeled,
   ChipField,
+  SearchInput,
 } from 'react-admin'
 
-import { FilterQ } from '../FilterQ'
 import { StencilsRelatedToMkFiles } from './StencilsRelatedToMkFiles'
 
+const mkfilters = [<SearchInput key={1} source='mkFilename@ilike' alwaysOn />]
+
 export const MkFileList = () => (
-  <InfiniteList filters={<FilterQ />}>
+  <InfiniteList filters={mkfilters}>
     <Datagrid bulkActionButtons={false}>
       <ChipField
         source='mkFilename'
@@ -19,9 +21,8 @@ export const MkFileList = () => (
         sx={{
           borderColor: 'primary.main',
           borderRadius: '5px',
-          backgroundColor: 'teal',
-          floodOpacity: 0.5,
-          opacity: 0.5,
+          floodopacity: 0.8,
+          opacity: 0.8,
           fontWeight: 'bold',
           fontSize: '1.1rem',
         }}

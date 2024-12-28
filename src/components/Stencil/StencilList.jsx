@@ -5,15 +5,19 @@ import {
   EditButton,
   ChipField,
   Labeled,
+  SearchInput,
 } from 'react-admin'
 
-import { FilterQ } from '../FilterQ'
 import { LibraryItemsRelatedToStencils } from './LibraryItemsRelatedToStencils'
+
+const stencilFilters = [
+  <SearchInput key={1} source='stencilNumber@ilike' alwaysOn />,
+]
 
 export const StencilList = () => (
   <InfiniteList
     sort={{ field: 'stencilNumber', order: 'ASC' }}
-    filters={<FilterQ />}
+    filters={stencilFilters}
   >
     <Datagrid bulkActionButtons={false}>
       <ChipField
