@@ -1,20 +1,17 @@
-import {
-  ArrayInput,
-  AutocompleteInput,
-  Edit,
-  ReferenceInput,
-  required,
-  SimpleForm,
-  SimpleFormIterator,
-  TextInput,
-} from 'react-admin'
+import { Edit, SimpleForm, TextInput } from 'react-admin'
+import { StencilsRelatedToMkFiles } from './StencilsRelatedToMkFiles'
+import { EditStencilsRelatedToMkFiles } from './EditStencilsRelatedToMkFiles'
 
 export const MkFileEdit = () => (
   <Edit>
     <SimpleForm>
       <TextInput source='mkFilename' />
 
-      <ArrayInput source='stencil_ids' label='Stencils'>
+      <StencilsRelatedToMkFiles />
+
+      <EditStencilsRelatedToMkFiles />
+
+      {/* <ArrayInput source='stencil_ids' label='Stencils'>
         <SimpleFormIterator inline fullWidth={false}>
           <ReferenceInput
             reference='stencils'
@@ -31,7 +28,7 @@ export const MkFileEdit = () => (
           </ReferenceInput>
           <TextInput source='version' label='Version' required />
         </SimpleFormIterator>
-      </ArrayInput>
+      </ArrayInput> */}
     </SimpleForm>
   </Edit>
 )
