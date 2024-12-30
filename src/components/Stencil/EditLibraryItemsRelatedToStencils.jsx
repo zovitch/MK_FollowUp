@@ -1,14 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useGetRecordId, useGetList } from 'react-admin'
-
 import { useFormContext } from 'react-hook-form'
-
 import { Autocomplete, TextField } from '@mui/material/'
 
 export const EditLibraryItemsRelatedToStencils = () => {
-  const recordId = useGetRecordId()
   const [selectedLibraryItems, setSelectedLibraryItems] = useState([])
-  const { setValue } = useFormContext()
+  const { setValue, register } = useFormContext()
+  const recordId = useGetRecordId()
 
   const {
     data: stencilLibraryItems,
@@ -29,6 +27,7 @@ export const EditLibraryItemsRelatedToStencils = () => {
   })
 
   useEffect(() => {
+    register('library_item_ids')
     if (stencilLibraryItems) {
       const sortedLibraryItems = stencilLibraryItems
         .map((item) => item.library_item)
@@ -39,14 +38,9 @@ export const EditLibraryItemsRelatedToStencils = () => {
         sortedLibraryItems.map((item) => item.id),
       )
     }
-  }, [stencilLibraryItems, setValue])
+  }, [stencilLibraryItems, setValue, register])
 
-  if (
-    isPendingStencilLibraryItems ||
-    isPendingAllLibraryItems ||
-    !stencilLibraryItems ||
-    !allLibraryItems
-  )
+  if (isPendingStencilLibraryItems || isPendingAllLibraryItems)
     return <p>Loading...</p>
   if (errorStencilLibraryItems || errorAllLibraryItems)
     return (
@@ -58,12 +52,17 @@ export const EditLibraryItemsRelatedToStencils = () => {
       </>
     )
 
+  // Filter out selected library items from the list of all library items
+  const availableLibraryItems = allLibraryItems.filter(
+    (item) =>
+      !selectedLibraryItems.some((selectedItem) => selectedItem.id === item.id),
+  )
+
   return (
     <Autocomplete
       multiple
       filterSelectedOptions
-      id='tags-standard'
-      options={allLibraryItems}
+      options={availableLibraryItems}
       getOptionLabel={(option) => option.lItem}
       value={selectedLibraryItems}
       onChange={(event, values) => {
@@ -71,6 +70,7 @@ export const EditLibraryItemsRelatedToStencils = () => {
         setValue(
           'library_item_ids',
           values.map((item) => item.id),
+          { shouldDirty: true }, // Mark the field as dirty to activate the save button
         )
       }}
       renderInput={(params) => (
@@ -79,5 +79,3 @@ export const EditLibraryItemsRelatedToStencils = () => {
     />
   )
 }
-
-export default EditLibraryItemsRelatedToStencils
