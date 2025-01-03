@@ -1,17 +1,19 @@
+import { useState } from 'react'
 import { useGetList, useGetRecordId, useRedirect } from 'react-admin'
-import { Box, Chip, Badge } from '@mui/material'
-
+import { Box, Chip, Badge, Button } from '@mui/material'
 import { getVersionColor } from '../utils/versionColors'
 
 export const StencilsRelatedToMkFiles = () => {
   const recordId = useGetRecordId()
   const redirect = useRedirect()
+  const [visibleCount, setVisibleCount] = useState(10)
 
   const {
     data: mkFileStencils,
     isPending,
     error,
   } = useGetList('mk_file_stencils', {
+    pagination: { page: 1, perPage: 1000 },
     filter: { mk_file_id: recordId },
     meta: { columns: ['*', 'stencil:stencils(*)'] },
   })
@@ -26,8 +28,8 @@ export const StencilsRelatedToMkFiles = () => {
         version: item.version,
       }))
     : []
-  const sortedStencilData = stencilData.sort(
-    (a, b) => a.stencilNumber - b.stencilNumber,
+  const sortedStencilData = stencilData.sort((a, b) =>
+    String(a.stencilNumber).localeCompare(String(b.stencilNumber)),
   )
 
   const handleClick = (event, stencil) => {
@@ -35,9 +37,13 @@ export const StencilsRelatedToMkFiles = () => {
     redirect(`/stencils/${stencil.id}/show`)
   }
 
+  const handleLoadMore = () => {
+    setVisibleCount((prevCount) => prevCount + 10)
+  }
+
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-      {sortedStencilData.map((stencil) => (
+      {sortedStencilData.slice(0, visibleCount).map((stencil) => (
         <Badge
           badgeContent={stencil.version}
           key={stencil.stencilNumber}
@@ -58,6 +64,9 @@ export const StencilsRelatedToMkFiles = () => {
           />
         </Badge>
       ))}
+      {visibleCount < sortedStencilData.length && (
+        <Button onClick={handleLoadMore}>Load More</Button>
+      )}
     </Box>
   )
 }
