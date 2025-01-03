@@ -5,7 +5,11 @@ import {
   Datagrid,
   TextField,
   ListContextProvider,
+  ChipField,
+  WithRecord,
 } from 'react-admin'
+
+import { getVersionColor } from '../utils/versionColors'
 
 const MkFilesWithStencil = () => {
   const record = useRecordContext()
@@ -55,8 +59,32 @@ const MkFilesWithStencil = () => {
         bulkActionButtons={false}
         rowClick={(id) => `/mk_files/${id}/show`}
       >
-        <TextField source='mkFilename' label='MK Filename' />
-        <TextField source='version' label="Stencil's Version" />
+        <ChipField
+          source='mkFilename'
+          color='primary'
+          sx={{
+            borderColor: 'primary.main',
+            borderRadius: '5px',
+            floodopacity: 0.8,
+            opacity: 0.8,
+            fontWeight: 'bold',
+            fontSize: '1.1rem',
+          }}
+        />
+
+        <WithRecord
+          label="Stencil's Version"
+          render={(record) => (
+            <ChipField
+              source='version'
+              record={record}
+              sx={{
+                color: 'white',
+                backgroundColor: getVersionColor(record.version),
+              }}
+            />
+          )}
+        />
       </Datagrid>
     </ListContextProvider>
   )

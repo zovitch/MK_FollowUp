@@ -2,23 +2,30 @@ import {
   Datagrid,
   Show,
   SimpleShowLayout,
-  TextField,
   ArrayField,
   ReferenceField,
   ChipField,
+  WithRecord,
 } from 'react-admin'
+import { Badge } from '@mui/material'
+
+import { getVersionColor } from '../utils/versionColors'
 
 const handleRowClick = (id) => `/stencils/${id}/show`
 
 export const MkFileShow = () => (
   <Show>
     <SimpleShowLayout>
-      <TextField
+      <ChipField
         source='mkFilename'
+        color='primary'
         sx={{
-          fontSize: 24,
+          borderColor: 'primary.main',
+          borderRadius: '5px',
+          floodopacity: 0.8,
+          opacity: 0.8,
           fontWeight: 'bold',
-          color: 'primary.main',
+          fontSize: '1.1rem',
         }}
       />
       <ArrayField
@@ -30,23 +37,51 @@ export const MkFileShow = () => (
           bulkActionButtons={false}
           rowClick={(id) => handleRowClick(id)}
         >
-          <ReferenceField
-            reference='stencils'
-            source='id'
-            label='Stencil Number'
-          >
-            <ChipField
-              source='stencilNumber'
-              sx={{
-                color: 'white', // Set the text color to white
-                backgroundColor: 'primary.main', // Set the background color
-                '& .MuiChip-label': {
-                  color: 'white', // Ensure the label text color is white
-                },
-              }}
-            />
-          </ReferenceField>
-          <TextField source='version' />
+          <WithRecord
+            render={(record) => (
+              <ReferenceField
+                reference='stencils'
+                source='id'
+                label='Stencil Number'
+              >
+                <Badge
+                  badgeContent={record.version}
+                  sx={{
+                    '& .MuiBadge-badge': {
+                      backgroundColor: getVersionColor(record.version),
+                      color: 'white',
+                      fontWeight: 'bold',
+                      fontSize: '0.8rem',
+                    },
+                  }}
+                >
+                  <ChipField
+                    source='stencilNumber'
+                    sx={{
+                      color: 'white', // Set the text color to white
+                      backgroundColor: 'primary.main', // Set the background color
+                      '& .MuiChip-label': {
+                        color: 'white', // Ensure the label text color is white
+                      },
+                    }}
+                  />
+                </Badge>
+              </ReferenceField>
+            )}
+          />
+
+          {/* <WithRecord
+            render={(record) => (
+              <ChipField
+                source='version'
+                record={record}
+                sx={{
+                  color: 'white',
+                  backgroundColor: getVersionColor(record.version),
+                }}
+              />
+            )}
+          /> */}
         </Datagrid>
       </ArrayField>
     </SimpleShowLayout>
