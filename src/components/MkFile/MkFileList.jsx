@@ -13,7 +13,10 @@ import {
 import { FilterQ } from '../FilterQ'
 
 export const MkFileList = () => (
-  <InfiniteList filters={<FilterQ />}>
+  <InfiniteList
+    filters={<FilterQ />}
+    sort={{ field: 'mkFilename', order: 'ASC' }}
+  >
     <Datagrid bulkActionButtons={false}>
       <TextField source='mkFilename' />
       <ArrayField source='stencil_ids' label='Stencils'>
