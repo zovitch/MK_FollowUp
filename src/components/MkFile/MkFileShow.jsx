@@ -6,10 +6,14 @@ import {
   ReferenceField,
   ChipField,
   WithRecord,
+  Labeled,
+  ReferenceArrayField,
+  SingleFieldList,
 } from 'react-admin'
 import { Badge } from '@mui/material'
 
 import { getVersionColor } from '../utils/versionColors'
+import { StencilsCountField } from '../utils/StencilsCountField'
 
 const handleRowClick = (id) => `/stencils/${id}/show`
 
@@ -28,6 +32,11 @@ export const MkFileShow = () => (
           fontSize: '1.1rem',
         }}
       />
+
+      <Labeled label='Stencils Count'>
+        <StencilsCountField />
+      </Labeled>
+
       <ArrayField
         source='stencil_ids'
         sort={{ field: 'stencilNumber', order: 'ASC' }}
@@ -69,19 +78,31 @@ export const MkFileShow = () => (
               </ReferenceField>
             )}
           />
-
-          {/* <WithRecord
-            render={(record) => (
-              <ChipField
-                source='version'
-                record={record}
-                sx={{
-                  color: 'white',
-                  backgroundColor: getVersionColor(record.version),
-                }}
-              />
-            )}
-          /> */}
+          <ReferenceField
+            reference='stencils'
+            source='id'
+            label='Library Number'
+          >
+            <ReferenceArrayField
+              source='lItem_ids'
+              reference='library_items'
+              label='Library Items'
+            >
+              <SingleFieldList linkType='show'>
+                <ChipField
+                  source='lItem'
+                  variant='outlined'
+                  sx={{
+                    color: 'secondary.main',
+                    borderColor: 'secondary.main',
+                    '& .MuiChip-label': {
+                      color: 'secondary.main',
+                    },
+                  }}
+                />
+              </SingleFieldList>
+            </ReferenceArrayField>
+          </ReferenceField>
         </Datagrid>
       </ArrayField>
     </SimpleShowLayout>

@@ -10,6 +10,7 @@ import {
 } from 'react-admin'
 
 import { FilterQ } from '../FilterQ'
+import { StencilsCountField } from '../utils/StencilsCountField'
 
 export const MkFileList = () => (
   <InfiniteList
@@ -29,6 +30,7 @@ export const MkFileList = () => (
           fontSize: '1.1rem',
         }}
       />
+      <StencilsCountField label='Stencils Count' />
       <ArrayField source='stencil_ids' label='Stencils'>
         <SingleFieldList linkType='show'>
           <ReferenceField reference='stencils' source='id'>

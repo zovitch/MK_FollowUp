@@ -9,6 +9,7 @@ import {
 } from 'react-admin'
 
 import { FilterQ } from '../FilterQ'
+import { LibraryItemsCountField } from '../utils/LibraryItemsCountField'
 
 export const StencilList = () => (
   <InfiniteList
@@ -27,6 +28,7 @@ export const StencilList = () => (
           },
         }}
       />
+      <LibraryItemsCountField label='Library Items Count' />
       <ReferenceArrayField
         reference='library_items'
         source='lItem_ids'
