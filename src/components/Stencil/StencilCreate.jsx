@@ -35,8 +35,8 @@ export const StencilCreate = () => {
           required
         />
         <ReferenceArrayInput
+          source='lItem_ids'
           reference='library_items'
-          source='library_item_ids'
           sort={{ field: 'lItem', order: 'ASC' }}
         >
           <AutocompleteArrayInput optionText='lItem' />
