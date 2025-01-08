@@ -9,6 +9,9 @@ import {
   Labeled,
   ReferenceArrayField,
   SingleFieldList,
+  PrevNextButtons,
+  TopToolbar,
+  EditButton,
 } from 'react-admin'
 import { Badge } from '@mui/material'
 
@@ -18,7 +21,20 @@ import { StencilsCountField } from '../utils/StencilsCountField'
 const handleRowClick = (id) => `/stencils/${id}/show`
 
 export const MkFileShow = () => (
-  <Show>
+  <Show
+    actions={
+      <TopToolbar>
+        <PrevNextButtons
+          linkType='show'
+          sort={{
+            field: 'mkFilename',
+            order: 'ASC',
+          }}
+        />
+        <EditButton />
+      </TopToolbar>
+    }
+  >
     <SimpleShowLayout>
       <ChipField
         source='mkFilename'

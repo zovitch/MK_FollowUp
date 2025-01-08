@@ -10,6 +10,9 @@ import {
   useCreateSuggestionContext,
   useCreate,
   NumberInput,
+  PrevNextButtons,
+  TopToolbar,
+  ShowButton,
 } from 'react-admin'
 
 import { useState } from 'react'
@@ -60,7 +63,19 @@ const CreateStencils = () => {
 }
 
 export const MkFileEdit = () => (
-  <Edit>
+  <Edit
+    actions={
+      <TopToolbar>
+        <PrevNextButtons
+          sort={{
+            field: 'mkFilename',
+            order: 'ASC',
+          }}
+        />
+        <ShowButton />
+      </TopToolbar>
+    }
+  >
     <SimpleForm>
       <TextInput source='mkFilename' />
 

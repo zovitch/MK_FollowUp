@@ -1,9 +1,30 @@
-import { ChipField, Show, SimpleShowLayout, TextField } from 'react-admin'
+import {
+  ChipField,
+  EditButton,
+  PrevNextButtons,
+  Show,
+  SimpleShowLayout,
+  TextField,
+  TopToolbar,
+} from 'react-admin'
 import { Divider } from '@mui/material'
 import StencilsWithLItem from './StencilsWithLItem'
 
 export const Library_itemShow = () => (
-  <Show>
+  <Show
+    actions={
+      <TopToolbar>
+        <PrevNextButtons
+          linkType='show'
+          sort={{
+            field: 'lItem',
+            order: 'ASC',
+          }}
+        />
+        <EditButton />
+      </TopToolbar>
+    }
+  >
     <SimpleShowLayout>
       <ChipField
         source='lItem'

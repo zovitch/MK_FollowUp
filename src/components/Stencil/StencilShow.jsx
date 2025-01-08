@@ -1,10 +1,13 @@
 import {
   ChipField,
+  EditButton,
   Labeled,
+  PrevNextButtons,
   ReferenceArrayField,
   Show,
   SimpleShowLayout,
   SingleFieldList,
+  TopToolbar,
 } from 'react-admin'
 
 import { Grid, Divider } from '@mui/material'
@@ -13,7 +16,20 @@ import MkFilesWithStencil from './MkFilesWithStencil'
 import { LibraryItemsCountField } from '../utils/LibraryItemsCountField'
 
 export const StencilShow = () => (
-  <Show>
+  <Show
+    actions={
+      <TopToolbar>
+        <PrevNextButtons
+          linkType='show'
+          sort={{
+            field: 'stencilNumber',
+            order: 'ASC',
+          }}
+        />
+        <EditButton />
+      </TopToolbar>
+    }
+  >
     <SimpleShowLayout>
       <ChipField
         source='stencilNumber'

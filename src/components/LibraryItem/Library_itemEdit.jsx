@@ -1,7 +1,26 @@
-import { Edit, SimpleForm, TextInput } from 'react-admin'
+import {
+  Edit,
+  PrevNextButtons,
+  ShowButton,
+  SimpleForm,
+  TextInput,
+  TopToolbar,
+} from 'react-admin'
 
 export const Library_itemEdit = () => (
-  <Edit>
+  <Edit
+    actions={
+      <TopToolbar>
+        <PrevNextButtons
+          sort={{
+            field: 'lItem',
+            order: 'ASC',
+          }}
+        />
+        <ShowButton />
+      </TopToolbar>
+    }
+  >
     <SimpleForm>
       <TextInput source='lItem' required />
       <TextInput source='description' />

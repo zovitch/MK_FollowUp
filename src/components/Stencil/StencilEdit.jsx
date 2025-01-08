@@ -1,14 +1,29 @@
 import {
   AutocompleteArrayInput,
   Edit,
+  PrevNextButtons,
   ReferenceArrayInput,
+  ShowButton,
   SimpleForm,
   TextInput,
+  TopToolbar,
 } from 'react-admin'
 
 export const StencilEdit = () => {
   return (
-    <Edit>
+    <Edit
+      actions={
+        <TopToolbar>
+          <PrevNextButtons
+            sort={{
+              field: 'stencilNumber',
+              order: 'ASC',
+            }}
+          />
+          <ShowButton />
+        </TopToolbar>
+      }
+    >
       <SimpleForm>
         <TextInput source='stencilNumber' />
         <ReferenceArrayInput
