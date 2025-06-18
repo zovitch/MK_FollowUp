@@ -1,3 +1,10 @@
+/**
+ * Library_itemShow component for displaying detailed information about a library item.
+ * This component shows the library item details along with its associated stencils.
+ *
+ * @module Library_itemShow
+ */
+
 import {
   ChipField,
   EditButton,
@@ -10,6 +17,18 @@ import {
 import { Divider } from '@mui/material'
 import StencilsWithLItem from './StencilsWithLItem'
 
+/**
+ * Library_itemShow component that displays detailed information about a library item.
+ *
+ * Features:
+ * - Navigation between library items using Prev/Next buttons
+ * - Edit button for quick access to edit mode
+ * - Display of library item identifier with custom styling
+ * - Shows item description
+ * - Lists associated stencils with their details
+ *
+ * @returns {JSX.Element} A detailed view of a library item
+ */
 export const Library_itemShow = () => (
   <Show
     actions={

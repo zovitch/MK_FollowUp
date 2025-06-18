@@ -1,3 +1,18 @@
+/**
+ * Version colors configuration for stencil versions.
+ * This module provides a mapping of version letters to colors and a utility function
+ * to get the color for a given version.
+ *
+ * @module versionColors
+ */
+
+/**
+ * Color mapping for different stencil versions.
+ * Each letter (a-z) and '*' has an associated color.
+ * Colors are chosen to be visually distinct and accessible.
+ *
+ * @type {Object.<string, string>}
+ */
 export const versionColors = {
   a: '#FF5733', // Red
   b: '#33B5FF', // Blue
@@ -28,4 +43,10 @@ export const versionColors = {
   '*': '#5C5C5C', // Grey
 }
 
+/**
+ * Gets the color associated with a version.
+ *
+ * @param {string} version - The version letter (a-z or '*')
+ * @returns {string} The color code for the version, or 'grey' if not found
+ */
 export const getVersionColor = (version) => versionColors[version] || 'grey'

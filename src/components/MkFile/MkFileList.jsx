@@ -1,3 +1,11 @@
+/**
+ * MkFileList component for displaying a list of MK files.
+ * This component implements an infinite scrolling list with filtering and sorting capabilities.
+ * Each MK file entry displays its filename, stencil count, and associated stencils.
+ *
+ * @module MkFileList
+ */
+
 import {
   Datagrid,
   InfiniteList,
@@ -12,6 +20,17 @@ import {
 import { FilterQ } from '../FilterQ'
 import { StencilsCountField } from '../utils/StencilsCountField'
 
+/**
+ * MkFileList component that renders a list of MK files with infinite scrolling.
+ *
+ * Features:
+ * - Infinite scrolling with a search filter
+ * - Sorted by filename in ascending order
+ * - Displays filename, stencil count, and associated stencils
+ * - Show and Edit buttons for each entry
+ *
+ * @returns {JSX.Element} A list view of MK files
+ */
 export const MkFileList = () => (
   <InfiniteList
     filters={<FilterQ />}

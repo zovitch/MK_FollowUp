@@ -1,3 +1,10 @@
+/**
+ * MkFileEdit component for editing MK file details.
+ * This component provides a form to edit MK file information and manage associated stencils.
+ *
+ * @module MkFileEdit
+ */
+
 import {
   ArrayInput,
   AutocompleteInput,
@@ -19,11 +26,23 @@ import { useState } from 'react'
 
 import { Dialog, DialogActions, DialogContent, Button } from '@mui/material'
 
+/**
+ * CreateStencils component for creating new stencils on the fly.
+ * This component renders a dialog with a form to create a new stencil.
+ *
+ * @returns {JSX.Element} A dialog form for creating new stencils
+ */
 const CreateStencils = () => {
   const { filter, onCancel, onCreate } = useCreateSuggestionContext()
   const [value, setValue] = useState(filter || '')
   const [create] = useCreate()
 
+  /**
+   * Handles the submission of the new stencil form.
+   * Creates a new stencil and adds it to the list of available stencils.
+   *
+   * @param {Event} event - The form submission event
+   */
   const handleSubmit = (event) => {
     event.preventDefault()
     create(
@@ -62,6 +81,20 @@ const CreateStencils = () => {
   )
 }
 
+/**
+ * MkFileEdit component that provides a form to edit MK file details.
+ *
+ * Features:
+ * - Navigation between MK files using Prev/Next buttons
+ * - Show button for quick access to show mode
+ * - Edit filename
+ * - Manage associated stencils:
+ *   - Add/remove stencils
+ *   - Create new stencils on the fly
+ *   - Set version for each stencil
+ *
+ * @returns {JSX.Element} An edit form for MK files
+ */
 export const MkFileEdit = () => (
   <Edit
     actions={

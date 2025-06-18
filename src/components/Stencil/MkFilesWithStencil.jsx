@@ -1,3 +1,11 @@
+/**
+ * MkFilesWithStencil component for displaying MK files that use a specific stencil.
+ * This component shows a list of MK files that reference the current stencil,
+ * along with the version of the stencil used in each MK file.
+ *
+ * @module MkFilesWithStencil
+ */
+
 import { useEffect, useState } from 'react'
 import {
   useRecordContext,
@@ -11,6 +19,17 @@ import {
 
 import { getVersionColor } from '../utils/versionColors'
 
+/**
+ * MkFilesWithStencil component that displays MK files using the current stencil.
+ *
+ * Features:
+ * - Fetches all MK files and filters those using the current stencil
+ * - Shows MK filename with custom styling
+ * - Displays stencil version with color coding
+ * - Clickable rows that navigate to the MK file details
+ *
+ * @returns {JSX.Element} A list of MK files using the current stencil
+ */
 const MkFilesWithStencil = () => {
   const record = useRecordContext()
   const [mkFiles, setMkFiles] = useState([])
@@ -24,6 +43,10 @@ const MkFilesWithStencil = () => {
     sort: { field: 'mkFilename', order: 'ASC' },
   })
 
+  /**
+   * Effect to filter and process MK files when data is loaded.
+   * Filters MK files to only those using the current stencil and adds version information.
+   */
   useEffect(() => {
     if (!isLoading && !error && mkFilesData) {
       const filteredMkFiles = mkFilesData

@@ -1,3 +1,10 @@
+/**
+ * MkFileShow component for displaying detailed information about an MK file.
+ * This component shows the file details along with its associated stencils and library items.
+ *
+ * @module MkFileShow
+ */
+
 import {
   Datagrid,
   Show,
@@ -18,8 +25,28 @@ import { Badge } from '@mui/material'
 import { getVersionColor } from '../utils/versionColors'
 import { StencilsCountField } from '../utils/StencilsCountField'
 
+/**
+ * Handler for row click events in the stencils datagrid.
+ * @param {string} id - The ID of the clicked stencil
+ * @returns {string} The URL to navigate to
+ */
 const handleRowClick = (id) => `/stencils/${id}/show`
 
+/**
+ * MkFileShow component that displays detailed information about an MK file.
+ *
+ * Features:
+ * - Navigation between MK files using Prev/Next buttons
+ * - Edit button for quick access to edit mode
+ * - Display of filename with custom styling
+ * - Stencil count display
+ * - List of associated stencils with:
+ *   - Version badges with color coding
+ *   - Clickable stencil numbers
+ *   - Associated library items for each stencil
+ *
+ * @returns {JSX.Element} A detailed view of an MK file
+ */
 export const MkFileShow = () => (
   <Show
     actions={
@@ -83,10 +110,10 @@ export const MkFileShow = () => (
                   <ChipField
                     source='stencilNumber'
                     sx={{
-                      color: 'white', // Set the text color to white
-                      backgroundColor: 'primary.main', // Set the background color
+                      color: 'white',
+                      backgroundColor: 'primary.main',
                       '& .MuiChip-label': {
-                        color: 'white', // Ensure the label text color is white
+                        color: 'white',
                       },
                     }}
                   />
