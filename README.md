@@ -1,75 +1,79 @@
 # MK FollowUp
 
-A tracking application developed with React and Vite, using React Admin for the user interface and JSON Server for data management.
+A React-based application for managing and tracking relationships between Library Items, Stencils, and MK Files in the manufacturing process.
 
-## 🚀 Technologies Used
+## Overview
 
-- React 18
-- Vite
-- React Admin
-- JSON Server
-- ESLint
+This application manages three interconnected resources that help stencil designers create and update stencils efficiently by promoting element reuse:
 
-## 📋 Prerequisites
+### Library Items (LItems)
 
-- Node.js (recommended version: latest LTS)
-- npm or yarn
+- Basic, non-versioned visual elements
+- Examples include: CE logo, UL logo, L1/L2/L3 indicators
+- Serve as the smallest reusable components in the system
+- Can be referenced across multiple stencils
 
-## 🛠️ Installation
+### Stencils
 
-1. Clone the repository:
+- Composite elements that combine:
+  - Zero, one, or multiple Library Items
+  - Non-referenced textual information (e.g., current/voltage specifications)
+- Versioned components that can be used across different MK Files
+- Each version (a-z) represents a specific iteration of the stencil
 
-```bash
-git clone [REPO_URL]
-cd MK_FollowUp
-```
+### MK Files
 
-2. Install dependencies:
+- Production documents that group one or more stencils
+- Used by:
+  - Production teams for manufacturing instructions
+  - Quality inspectors for verification purposes
+- A stencil can appear in:
+  - Zero MK Files (if obsolete)
+  - One or multiple MK Files (promoting reuse)
 
-```bash
-npm install
-```
+## Key Features
 
-## 🚀 Getting Started
+### Relationship Tracking
 
-1. Start the development server:
+The application helps designers understand and navigate the complex relationships between elements. For example:
 
-```bash
-npm run dev
-```
+- MK_0001 (DS40 range) contains stencil #0018
+- Stencil #0018 uses Library Item L0053
+- L0053 is also used in stencils #0017, #0050, and others
+- Stencil #0018 appears in MK_0001_DS40, MK_0002_DS70R, etc.
 
-2. In another terminal, start the JSON server:
+### Version Management
 
-```bash
-node server.js
-```
+- Library Items are not versioned
+- Stencils support versioning (a-z)
+- Different MK Files can use different versions of the same stencil
+- Example: Stencil #0018 might be:
+  - Version 'b' in the DS40 MK File
+  - Version 'a' in older or customer-specific MK Files
 
-The application will be available at: http://localhost:5173
-The JSON server will be available at: http://192.168.1.211:4000
+## Technical Stack
 
-## 📦 Available Scripts
-
-- `npm run dev` : Start development server
-- `npm run build` : Create production build
-- `npm run lint` : Check code with ESLint
-- `npm run preview` : Preview production build
-
-## 📁 Project Structure
-
-- `/src` : React application source code
-- `/public` : Static files
-- `server.js` : JSON server configuration
-- `mk_followup_database.json` : JSON database
-
-## 🔧 Configuration
-
-The project uses:
-
-- Vite for bundling and development
+- React with Vite
 - React Admin for the admin interface
-- JSON Server to simulate a REST API
-- ESLint for code quality
+- MongoDB for data storage
+- Express.js backend
 
-## 📝 License
+## Getting Started
 
-This project is private and confidential.
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+## Development
+
+The application is built with React and uses Vite as the build tool. The main components are organized in the `src` directory, with separate directories for each major resource type (LibraryItem, Stencil, MkFile).
+
+## License
+
+This project is proprietary and confidential.
